@@ -1,0 +1,92 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import graph_EL as graph
+#import graph_AM as graph # Replace line 3 by this one to demonstrate adjacy maxtrix implementation
+#import graph_EL as graph # Replace line 3 by this one to demonstrate edge list implementation
+
+if __name__ == "__main__":
+    #Part 1
+    plt.close("all")   
+    g = graph.Graph(6)
+    g.insert_edge(0,1)
+    g.insert_edge(0,2)
+    g.insert_edge(1,2)
+    g.insert_edge(2,3)
+    g.insert_edge(3,4)
+    g.insert_edge(4,1)
+    #All subsequent calls to draw() need conversion to AL to be utilized
+    g1=g.as_AL()
+    g1.draw()
+    g.delete_edge(1,2)
+    g.display()
+    g1=g.as_AL()
+    g1.draw()
+    
+    
+    g = graph.Graph(6,directed = True)
+    g.insert_edge(0,1)
+    g.insert_edge(0,2)
+    g.insert_edge(1,2)
+    g.insert_edge(2,3)
+    g.insert_edge(3,4)
+    g.insert_edge(4,1)
+    g.display()
+    g1=g.as_AL()
+    g1.draw()
+    g.delete_edge(1,2)
+    g.display()
+    g1=g.as_AL()
+    g1.draw()
+    
+    g = graph.Graph(6,weighted=True)
+    g.insert_edge(0,1,4)
+    g.insert_edge(0,2,3)
+    g.insert_edge(1,2,2)
+    g.insert_edge(2,3,1)
+    g.insert_edge(3,4,5)
+    g.insert_edge(4,1,4)
+    g.display()
+    g1=g.as_AL()
+    g1.draw()
+    g.delete_edge(1,2)
+    g.display()
+    g1=g.as_AL()
+    g1.draw()
+    
+    g = graph.Graph(6,weighted=True,directed = True)
+    g.insert_edge(0,1,4)
+    g.insert_edge(0,2,3)
+    g.insert_edge(1,2,2)
+    g.insert_edge(2,3,1)
+    g.insert_edge(3,4,5)
+    g.insert_edge(4,1,4)
+    g.display()
+    g1=g.as_AL()
+    g1.draw()
+    g.delete_edge(1,2)
+    g.display()
+    g1=g.as_AL()
+    g1.draw()
+    
+    g1=g.as_AL()
+    g1.draw()
+    
+    #Part 2
+    g = graph.Graph(16)
+    g.insert_edge(0,5)
+    g.insert_edge(2,7)
+    g.insert_edge(2,11)
+    g.insert_edge(4,5)
+    g.insert_edge(4,7)
+    g.insert_edge(4,13)
+    g.insert_edge(8,11)
+    g.insert_edge(8,13)
+    g.insert_edge(10,11)
+    g.insert_edge(10,15)
+    print(g.representation, 'representation of fox-chicken-grain-person graph')
+    g.display()
+    g1 = g.as_AL()
+    g1.draw()
+    
+    g.BFS()
+    g.DFS()
