@@ -6,7 +6,6 @@
 # Purpose: The purpose of this lab is to implement recursion 
 #          in order to find anagrams of a given word in a list of words.
 
-import sys
 import time
 
 def permutation(word): 
