@@ -6,13 +6,14 @@
 # Purpose: The purpose of this lab is to implement recursion 
 #          in order to find anagrams of a given word in a list of words.
 
+import sys
 import time
 
 def permutation(word): 
     #If word has no letters, no more permutations can be made
     if len(word) == 0: 
         return [] 
-    #If word has one letter, only one permutation (itself) can be made
+    #If word has one letter, only one permuatation (itself) can be made
     if len(word) == 1: 
         return [word] 
     #If word has two or more letters, recursive calls must be made to find permutations
@@ -49,9 +50,7 @@ def permutation_opt(word, prefix_set):
         return [] 
     #If word has one letter, only one permuatation (itself) can be made
     if len(word) == 1: 
-        return [word] 
-#    if word not in prefix_set:
-#        return [word]
+        return [word]
     #If word has two or more letters, recursive calls must be made to find permutations
     l = []#List to store all possible permuatations
     #Take each letter of the current part of the word, starting from last letter
@@ -97,28 +96,32 @@ if __name__ == "__main__":#main method
     
     for line in word_file:#read each word into empty set
         word_set.add(line[:-1])
-    word = input('Enter a word or empty string to finish: ')#User Prompt
-    #Unoptimized
-    print('Part 1')
-    start = time.time()
-    anagram_list = anagram(word, word_set)
-    end = time.time()
-    print('The word',word,'has the following',len(anagram_list),'anagrams:')
-    for i in range(len(anagram_list)):
-        print(anagram_list[i])
-    print('It took %.6f'%(end-start),'seconds to find the anagrams.')
-    #Optimized
-    print('Part 2')
-    word_file = open("/Users/johanncampos369/Downloads/words_alpha.txt", "r")#access words_alpha.txt
-    prefix_set = set()
-    for line in word_file:#read each word into empty set
-        for i in range(len(line) - 1):
-            if line[:i] not in prefix_set:
-                prefix_set.add(line[:i])
-    start = time.time()
-    anagram_list = anagram_opt(word, word_set, prefix_set)
-    end = time.time()
-    print('The word',word,'has the following',len(anagram_list),'anagrams:')
-    for i in range(len(anagram_list)):
-        print(anagram_list[i])
-    print('It took %.6f'%(end-start),'seconds to find the anagrams.')
+    while(True):
+        word = input('Enter a word or empty string to finish: ')#User Prompt
+        if word == '':
+            break
+        #Unoptimized
+        print('Part 1')
+        start = time.time()
+        anagram_list = anagram(word, word_set)
+        end = time.time()
+        print('The word',word,'has the following',len(anagram_list),'anagrams:')
+        for i in range(len(anagram_list)):
+            print(anagram_list[i])
+        print('It took %.6f'%(end-start),'seconds to find the anagrams.')
+        #Optimized
+        print('Part 2')
+        word_file = open("/Users/johanncampos369/Downloads/words_alpha.txt", "r")#access words_alpha.txt
+        prefix_set = set()
+        for line in word_file:#read each word into empty set
+            for i in range(len(line) - 1):
+                if line[:i] not in prefix_set:
+                    prefix_set.add(line[:i])
+        start = time.time()
+        anagram_list = anagram_opt(word, word_set, prefix_set)
+        end = time.time()
+        print('The word',word,'has the following',len(anagram_list),'anagrams:')
+        for i in range(len(anagram_list)):
+            print(anagram_list[i])
+        print('It took %.6f'%(end-start),'seconds to find the anagrams.')
+    print("Bye, thanks for using this program!")
